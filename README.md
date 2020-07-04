@@ -1,2 +1,2 @@
 # libs_c
-Library implemented in C.
+Libraries implemented in C.
