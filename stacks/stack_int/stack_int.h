@@ -1,7 +1,7 @@
 #include <stdbool.h>
 
 typedef struct Node {
-    char value;
+    int value;
     struct Node *next;
 }Node;
 

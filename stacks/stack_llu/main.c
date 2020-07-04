@@ -1,16 +1,16 @@
 #include <stdio.h>
-#include "stack_char.h"
+#include "stack_llu.h"
 
 void main() {
     Node *stack = NULL;
-    push_stack_char(&stack, 'a');
-    push_stack_char(&stack, 'b');
-    push_stack_char(&stack, 'c');
-    push_stack_char(&stack, 'd');
-    push_stack_char(&stack, 'e');
-    printf("%c\n", top_stack_char(stack));
-    pop_stack_char(&stack);
-    printf("Is empty: %d\n", is_empty_stack_char(stack));
-    print_stack_char(&stack);
-    printf("Is empty: %d\n", is_empty_stack_char(stack));
+    push_stack_llu(&stack, 10000000);
+    push_stack_llu(&stack, 20000000);
+    push_stack_llu(&stack, 30000000);
+    push_stack_llu(&stack, 40000000);
+    push_stack_llu(&stack, 50000000);
+    printf("%llu\n", top_stack_llu(stack));
+    pop_stack_llu(&stack);
+    printf("Is empty: %d\n", is_empty_stack_llu(stack));
+    print_stack_llu(&stack);
+    printf("Is empty: %d\n", is_empty_stack_llu(stack));
 }

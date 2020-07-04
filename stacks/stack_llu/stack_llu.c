@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "stack_char.h"
+#include "stack_llu.h"
 
-Node *new_node_stack_char(char value) {
+Node *new_node_stack_llu(long long unsigned int value) {
     Node *node = (Node *) malloc(sizeof(Node));
     node->value = value;
     node->next = NULL;
@@ -12,10 +12,10 @@ Node *new_node_stack_char(char value) {
     return node;
 }
 
-void push_stack_char(Node **stack, char value) {
+void push_stack_llu(Node **stack, long long unsigned int value) {
     if (stack == NULL) return;
 
-    Node *node = new_node_stack_char(value);
+    Node *node = new_node_stack_llu(value);
 
     if ((*stack) == NULL) {
         (*stack) = node;
@@ -27,12 +27,13 @@ void push_stack_char(Node **stack, char value) {
     }
 }
 
-char top_stack_char(Node *stack) {
-    if (stack == NULL) return '\0';
-    return stack->value;
+long long unsigned int top_stack_llu(Node *stack) {
+    if (stack != NULL) {
+        return stack->value;
+    }
 }
 
-void pop_stack_char(Node **stack) {
+void pop_stack_llu(Node **stack) {
     if (stack == NULL || (*stack) == NULL) return;
 
     Node *aux = (*stack);
@@ -41,16 +42,16 @@ void pop_stack_char(Node **stack) {
     aux = NULL;
 }
 
-bool is_empty_stack_char(Node *stack) {
+bool is_empty_stack_llu(Node *stack) {
     return (stack == NULL);
 }
 
-void print_stack_char(Node **stack) {
+void print_stack_llu(Node **stack) {
     if (stack == NULL || (*stack) == NULL) return;
 
     while ((*stack) != NULL) {
-        printf("%c", top_stack_char(*stack));
-        pop_stack_char(stack);
+        printf("%llu ", top_stack_llu(*stack));
+        pop_stack_llu(stack);
     }
     printf("\n");
 }
