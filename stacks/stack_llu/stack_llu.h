@@ -1,9 +1,10 @@
 #include <stdbool.h>
 
-typedef struct Node {
+typedef struct Node
+{
     long long unsigned int value;
     struct Node *next;
-}Node;
+} Node;
 
 void push_stack_llu(Node **stack, long long unsigned int value);
 long long unsigned int top_stack_llu(Node *stack);

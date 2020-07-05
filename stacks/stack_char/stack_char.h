@@ -1,9 +1,10 @@
 #include <stdbool.h>
 
-typedef struct Node {
+typedef struct Node
+{
     char value;
     struct Node *next;
-}Node;
+} Node;
 
 void push_stack_char(Node **stack, char value);
 char top_stack_char(Node *stack);

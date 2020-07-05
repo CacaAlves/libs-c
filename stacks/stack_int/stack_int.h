@@ -1,9 +1,10 @@
 #include <stdbool.h>
 
-typedef struct Node {
+typedef struct Node
+{
     int value;
     struct Node *next;
-}Node;
+} Node;
 
 void push_stack_int(Node **stack, int value);
 int top_stack_int(Node *stack);

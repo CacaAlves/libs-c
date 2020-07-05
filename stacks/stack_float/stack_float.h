@@ -1,9 +1,10 @@
 #include <stdbool.h>
 
-typedef struct Node {
+typedef struct Node
+{
     float value;
     struct Node *next;
-}Node;
+} Node;
 
 void push_stack_float(Node **stack, float value);
 float top_stack_float(Node *stack);
