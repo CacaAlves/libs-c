@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "list_char.h"
+#include "list_lld.h"
 
-ListChar *new_node_list_char(char value)
+ListLld *new_node_list_lld(long long int value)
 {
-    ListChar *node = (ListChar *)malloc(sizeof(ListChar));
+    ListLld *node = (ListLld *)malloc(sizeof(ListLld));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_char(ListChar **list, char value)
+void push_list_lld(ListLld **list, long long int value)
 {
     if (list == NULL)
         return;
 
-    ListChar *node = new_node_list_char(value);
+    ListLld *node = new_node_list_lld(value);
 
     if ((*list) == NULL)
     {
@@ -26,33 +26,33 @@ void push_list_char(ListChar **list, char value)
     }
     else
     {
-        ListChar *last = (*list);
+        ListLld *last = (*list);
         node->next = last->next;
         last->next = node;
         (*list) = node;
     }
 }
 
-void unshift_list_char(ListChar **list, char value)
+void unshift_list_lld(ListLld **list, long long int value)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_char(list, value);
+        push_list_lld(list, value);
     }
     else
     {
-        ListChar *node = new_node_list_char(value);
-        ListChar *first = (*list)->next;
-        ListChar *last = (*list);
+        ListLld *node = new_node_list_lld(value);
+        ListLld *first = (*list)->next;
+        ListLld *last = (*list);
         last->next = node;
         node->next = first;
     }
 }
 
-void pop_list_char(ListChar **list)
+void pop_list_lld(ListLld **list)
 {
     if (list == NULL || (*list) == NULL)
         return;
@@ -64,7 +64,7 @@ void pop_list_char(ListChar **list)
     }
     else
     {
-        ListChar *aux = (*list)->next;
+        ListLld *aux = (*list)->next;
         while (aux->next != (*list))
         {
             aux = aux->next;
@@ -76,7 +76,7 @@ void pop_list_char(ListChar **list)
     }
 }
 
-void shift_list_char(ListChar **list)
+void shift_list_lld(ListLld **list)
 {
     if (list == NULL || (*list) == NULL)
         return;
@@ -88,14 +88,14 @@ void shift_list_char(ListChar **list)
     }
     else
     {
-        ListChar *first = (*list)->next;
+        ListLld *first = (*list)->next;
         (*list)->next = first->next;
         free(first);
         first = NULL;
     }
 }
 
-char peek_list_char(ListChar *list)
+long long int peek_list_lld(ListLld *list)
 {
     if (list != NULL)
     {
@@ -103,7 +103,7 @@ char peek_list_char(ListChar *list)
     }
 }
 
-char top_list_char(ListChar *list)
+long long int top_list_lld(ListLld *list)
 {
     if (list != NULL)
     {
@@ -111,12 +111,12 @@ char top_list_char(ListChar *list)
     }
 }
 
-long long int index_of_list_char(ListChar *list, char value)
+long long int index_of_list_lld(ListLld *list, long long int value)
 {
     if (list == NULL)
         return -1;
 
-    ListChar *aux = list->next;
+    ListLld *aux = list->next;
     long long int index = 0;
 
     while (aux != list && aux->value != value)
@@ -128,12 +128,12 @@ long long int index_of_list_char(ListChar *list, char value)
     return ((aux->value == value) ? index : -1);
 }
 
-ListChar *includes_list_char(ListChar *list, long long int index)
+ListLld *includes_list_lld(ListLld *list, long long int index)
 {
     if (list == NULL || index < 0)
         return NULL;
 
-    ListChar *aux = list->next;
+    ListLld *aux = list->next;
     long long int indexCounter = 0;
 
     while (aux != list && indexCounter != index)
@@ -144,36 +144,36 @@ ListChar *includes_list_char(ListChar *list, long long int index)
     return ((indexCounter == index) ? aux : NULL);
 }
 
-void delete_list_char(ListChar **list, long long int index)
+void delete_list_lld(ListLld **list, long long int index)
 {
     if (list == NULL || (*list) == NULL || index < 0)
         return;
 
-    long long int length = length_list_char((*list));
+    long long int length = length_list_lld((*list));
 
     if (index >= length)
         return;
 
     if (index == 0)
     {
-        shift_list_char(list);
+        shift_list_lld(list);
         return;
     }
     else if (index == length - 1)
     {
-        pop_list_char(list);
+        pop_list_lld(list);
     }
     else
     {
         long long int indexCounter = 0;
-        ListChar *aux = (*list)->next;
+        ListLld *aux = (*list)->next;
         while (indexCounter != index - 1) {
             aux = aux->next;
             indexCounter++;
         }
 
         if (indexCounter == index - 1) {
-            ListChar *nodeToDelete = aux->next;
+            ListLld *nodeToDelete = aux->next;
             aux->next = nodeToDelete->next;
             free(nodeToDelete);
             nodeToDelete = NULL;
@@ -181,15 +181,15 @@ void delete_list_char(ListChar **list, long long int index)
     }
 }
 
-void free_list_char(ListChar **list)
+void free_list_lld(ListLld **list)
 {
     if (list == NULL)
         return;
 
-    ListChar *aux = (*list)->next;
+    ListLld *aux = (*list)->next;
     while (aux != (*list))
     {
-        ListChar *prev = aux;
+        ListLld *prev = aux;
         aux = aux->next;
         free(prev);
     }
@@ -197,13 +197,13 @@ void free_list_char(ListChar **list)
     (*list) = NULL;
 }
 
-long long unsigned int length_list_char(ListChar *list)
+long long unsigned int length_list_lld(ListLld *list)
 {
     if (list == NULL)
         return 0;
 
     long long unsigned int counter = 0;
-    ListChar *aux = list->next;
+    ListLld *aux = list->next;
 
     while (aux != list)
     {
@@ -215,25 +215,25 @@ long long unsigned int length_list_char(ListChar *list)
     return counter;
 }
 
-bool is_empty_list_char(ListChar *list)
+bool is_empty_list_lld(ListLld *list)
 {
     return (list == NULL);
 }
 
-void print_list_char(ListChar *list)
+void print_list_lld(ListLld *list)
 {
     if (list == NULL) {
         printf("Empty list\n");
         return;
     }
 
-    ListChar *first = list->next;
+    ListLld *first = list->next;
 
     while (first != list)
     {
-        printf("%c", first->value);
+        printf("%lld ", first->value);
         first = first->next;
     }
 
-    printf("%c\n", list->value);
+    printf("%lld\n", list->value);
 }
