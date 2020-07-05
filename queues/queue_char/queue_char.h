@@ -1,13 +1,13 @@
 #include <stdbool.h>
 
-typedef struct Node
+typedef struct QueueChar
 {
     char value;
-    struct Node *next;
-} Node;
+    struct QueueChar *next;
+} QueueChar;
 
-void enqueue_queue_char(Node **queue, char value);
-void dequeue_queue_char(Node **queue);
-char peek_queue_char(Node *queue);
-bool is_empty_queue_char(Node *queue);
-void print_queue_char(Node **queue);
+void enqueue_queue_char(QueueChar **queue, char value);
+void dequeue_queue_char(QueueChar **queue);
+char peek_queue_char(QueueChar *queue);
+bool is_empty_queue_char(QueueChar *queue);
+void print_queue_char(QueueChar **queue);

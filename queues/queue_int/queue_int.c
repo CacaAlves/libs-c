@@ -3,58 +3,58 @@
 #include <stdbool.h>
 #include "queue_int.h"
 
-Node *new_node_queue_int(int value)
+QueueInt *new_node_queue_int(int value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    QueueInt *node = (QueueInt *)malloc(sizeof(QueueInt));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_int(Node **queue, int value)
+void enqueue_queue_int(QueueInt **queue, int value)
 {
     if ((queue) == NULL)
         return;
 
-    Node *node = new_node_queue_int(value);
+    QueueInt *node = new_node_queue_int(value);
 
     if ((*queue) == NULL)
     {
-        (*queue) = (Node *)malloc(sizeof(Node));
+        (*queue) = (QueueInt *)malloc(sizeof(QueueInt));
 
         (*queue) = node;
         (*queue)->next = node;
     }
     else
     {
-        Node *last = (*queue);
+        QueueInt *last = (*queue);
         node->next = last->next;
         last->next = node;
         (*queue) = node;
     }
 }
 
-void dequeue_queue_int(Node **queue)
+void dequeue_queue_int(QueueInt **queue)
 {
     if ((queue) == NULL || (*queue) == NULL)
         return;
 
-    if ((*queue)->next == NULL)
+    if ((*queue)->next == (*queue))
     {
         free((*queue));
         (*queue) = NULL;
     }
     else
     {
-        Node *first = (*queue)->next;
+        QueueInt *first = (*queue)->next;
         (*queue)->next = first->next;
         free(first);
         first = NULL;
     }
 }
 
-int peek_queue_int(Node *queue)
+int peek_queue_int(QueueInt *queue)
 {
     if (queue != NULL)
     {
@@ -62,14 +62,14 @@ int peek_queue_int(Node *queue)
     }
 }
 
-bool is_empty_queue_int(Node *queue)
+bool is_empty_queue_int(QueueInt *queue)
 {
     return (queue == NULL);
 }
 
-void print_queue_int(Node **queue)
+void print_queue_int(QueueInt **queue)
 {
-    Node *aux = (*queue)->next;
+    QueueInt *aux = (*queue)->next;
     while (aux != (*queue))
     {
         printf("%d ", peek_queue_int(*queue));

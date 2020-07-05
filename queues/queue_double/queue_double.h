@@ -1,13 +1,13 @@
 #include <stdbool.h>
 
-typedef struct Node
+typedef struct QueueDouble
 {
     double value;
-    struct Node *next;
-} Node;
+    struct QueueDouble *next;
+} QueueDouble;
 
-void enqueue_queue_double(Node **queue, double value);
-void dequeue_queue_double(Node **queue);
-double peek_queue_double(Node *queue);
-bool is_empty_queue_double(Node *queue);
-void print_queue_double(Node **queue);
+void enqueue_queue_double(QueueDouble **queue, double value);
+void dequeue_queue_double(QueueDouble **queue);
+double peek_queue_double(QueueDouble *queue);
+bool is_empty_queue_double(QueueDouble *queue);
+void print_queue_double(QueueDouble **queue);

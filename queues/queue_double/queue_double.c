@@ -3,58 +3,58 @@
 #include <stdbool.h>
 #include "queue_double.h"
 
-Node *new_node_queue_double(double value)
+QueueDouble *new_node_queue_double(double value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    QueueDouble *node = (QueueDouble *)malloc(sizeof(QueueDouble));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_double(Node **queue, double value)
+void enqueue_queue_double(QueueDouble **queue, double value)
 {
     if ((queue) == NULL)
         return;
 
-    Node *node = new_node_queue_double(value);
+    QueueDouble *node = new_node_queue_double(value);
 
     if ((*queue) == NULL)
     {
-        (*queue) = (Node *)malloc(sizeof(Node));
+        (*queue) = (QueueDouble *)malloc(sizeof(QueueDouble));
 
         (*queue) = node;
         (*queue)->next = node;
     }
     else
     {
-        Node *last = (*queue);
+        QueueDouble *last = (*queue);
         node->next = last->next;
         last->next = node;
         (*queue) = node;
     }
 }
 
-void dequeue_queue_double(Node **queue)
+void dequeue_queue_double(QueueDouble **queue)
 {
     if ((queue) == NULL || (*queue) == NULL)
         return;
 
-    if ((*queue)->next == NULL)
+    if ((*queue)->next == (*queue))
     {
         free((*queue));
         (*queue) = NULL;
     }
     else
     {
-        Node *first = (*queue)->next;
+        QueueDouble *first = (*queue)->next;
         (*queue)->next = first->next;
         free(first);
         first = NULL;
     }
 }
 
-double peek_queue_double(Node *queue)
+double peek_queue_double(QueueDouble *queue)
 {
     if (queue != NULL)
     {
@@ -62,14 +62,14 @@ double peek_queue_double(Node *queue)
     }
 }
 
-bool is_empty_queue_double(Node *queue)
+bool is_empty_queue_double(QueueDouble *queue)
 {
     return (queue == NULL);
 }
 
-void print_queue_double(Node **queue)
+void print_queue_double(QueueDouble **queue)
 {
-    Node *aux = (*queue)->next;
+    QueueDouble *aux = (*queue)->next;
     while (aux != (*queue))
     {
         printf("%f ", peek_queue_double(*queue));

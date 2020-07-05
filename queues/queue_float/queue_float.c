@@ -3,58 +3,58 @@
 #include <stdbool.h>
 #include "queue_float.h"
 
-Node *new_node_queue_float(float value)
+QueueFloat *new_node_queue_float(float value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    QueueFloat *node = (QueueFloat *)malloc(sizeof(QueueFloat));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_float(Node **queue, float value)
+void enqueue_queue_float(QueueFloat **queue, float value)
 {
     if ((queue) == NULL)
         return;
 
-    Node *node = new_node_queue_float(value);
+    QueueFloat *node = new_node_queue_float(value);
 
     if ((*queue) == NULL)
     {
-        (*queue) = (Node *)malloc(sizeof(Node));
+        (*queue) = (QueueFloat *)malloc(sizeof(QueueFloat));
 
         (*queue) = node;
         (*queue)->next = node;
     }
     else
     {
-        Node *last = (*queue);
+        QueueFloat *last = (*queue);
         node->next = last->next;
         last->next = node;
         (*queue) = node;
     }
 }
 
-void dequeue_queue_float(Node **queue)
+void dequeue_queue_float(QueueFloat **queue)
 {
     if ((queue) == NULL || (*queue) == NULL)
         return;
 
-    if ((*queue)->next == NULL)
+    if ((*queue)->next == (*queue))
     {
         free((*queue));
         (*queue) = NULL;
     }
     else
     {
-        Node *first = (*queue)->next;
+        QueueFloat *first = (*queue)->next;
         (*queue)->next = first->next;
         free(first);
         first = NULL;
     }
 }
 
-float peek_queue_float(Node *queue)
+float peek_queue_float(QueueFloat *queue)
 {
     if (queue != NULL)
     {
@@ -62,14 +62,14 @@ float peek_queue_float(Node *queue)
     }
 }
 
-bool is_empty_queue_float(Node *queue)
+bool is_empty_queue_float(QueueFloat *queue)
 {
     return (queue == NULL);
 }
 
-void print_queue_float(Node **queue)
+void print_queue_float(QueueFloat **queue)
 {
-    Node *aux = (*queue)->next;
+    QueueFloat *aux = (*queue)->next;
     while (aux != (*queue))
     {
         printf("%f ", peek_queue_float(*queue));
