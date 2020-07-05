@@ -4,21 +4,21 @@
 #include <string.h>
 #include "stack_char.h"
 
-Node *new_node_stack_char(char value)
+StackChar *new_node_stack_char(char value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    StackChar *node = (StackChar *)malloc(sizeof(StackChar));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_char(Node **stack, char value)
+void push_stack_char(StackChar **stack, char value)
 {
     if (stack == NULL)
         return;
 
-    Node *node = new_node_stack_char(value);
+    StackChar *node = new_node_stack_char(value);
 
     if ((*stack) == NULL)
     {
@@ -26,13 +26,13 @@ void push_stack_char(Node **stack, char value)
     }
     else
     {
-        Node *aux = (*stack);
+        StackChar *aux = (*stack);
         (*stack) = node;
         node->next = aux;
     }
 }
 
-char top_stack_char(Node *stack)
+char top_stack_char(StackChar *stack)
 {
     if (stack != NULL)
     {
@@ -40,23 +40,23 @@ char top_stack_char(Node *stack)
     }
 }
 
-void pop_stack_char(Node **stack)
+void pop_stack_char(StackChar **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;
 
-    Node *aux = (*stack);
+    StackChar *aux = (*stack);
     (*stack) = (*stack)->next;
     free(aux);
     aux = NULL;
 }
 
-bool is_empty_stack_char(Node *stack)
+bool is_empty_stack_char(StackChar *stack)
 {
     return (stack == NULL);
 }
 
-void print_stack_char(Node **stack)
+void print_stack_char(StackChar **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;

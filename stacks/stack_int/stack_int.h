@@ -1,13 +1,13 @@
 #include <stdbool.h>
 
-typedef struct Node
+typedef struct StackInt
 {
     int value;
-    struct Node *next;
-} Node;
+    struct StackInt *next;
+} StackInt;
 
-void push_stack_int(Node **stack, int value);
-int top_stack_int(Node *stack);
-void pop_stack_int(Node **stack);
-void print_stack_int(Node **stack);
-bool is_empty_stack_int(Node *stack);
+void push_stack_int(StackInt **stack, int value);
+int top_stack_int(StackInt *stack);
+void pop_stack_int(StackInt **stack);
+void print_stack_int(StackInt **stack);
+bool is_empty_stack_int(StackInt *stack);

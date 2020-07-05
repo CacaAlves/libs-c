@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_float.h"
 
-Node *new_node_stack_float(float value)
+StackFloat *new_node_stack_float(float value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    StackFloat *node = (StackFloat *)malloc(sizeof(StackFloat));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_float(Node **stack, float value)
+void push_stack_float(StackFloat **stack, float value)
 {
     if (stack == NULL)
         return;
 
-    Node *node = new_node_stack_float(value);
+    StackFloat *node = new_node_stack_float(value);
 
     if ((*stack) == NULL)
     {
@@ -25,13 +25,13 @@ void push_stack_float(Node **stack, float value)
     }
     else
     {
-        Node *aux = (*stack);
+        StackFloat *aux = (*stack);
         (*stack) = node;
         node->next = aux;
     }
 }
 
-float top_stack_float(Node *stack)
+float top_stack_float(StackFloat *stack)
 {
     if (stack != NULL)
     {
@@ -39,23 +39,23 @@ float top_stack_float(Node *stack)
     }
 }
 
-void pop_stack_float(Node **stack)
+void pop_stack_float(StackFloat **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;
 
-    Node *aux = (*stack);
+    StackFloat *aux = (*stack);
     (*stack) = (*stack)->next;
     free(aux);
     aux = NULL;
 }
 
-bool is_empty_stack_float(Node *stack)
+bool is_empty_stack_float(StackFloat *stack)
 {
     return (stack == NULL);
 }
 
-void print_stack_float(Node **stack)
+void print_stack_float(StackFloat **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;

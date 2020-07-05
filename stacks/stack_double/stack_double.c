@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_double.h"
 
-Node *new_node_stack_double(double value)
+StackDouble *new_node_stack_double(double value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    StackDouble *node = (StackDouble *)malloc(sizeof(StackDouble));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_double(Node **stack, double value)
+void push_stack_double(StackDouble **stack, double value)
 {
     if (stack == NULL)
         return;
 
-    Node *node = new_node_stack_double(value);
+    StackDouble *node = new_node_stack_double(value);
 
     if ((*stack) == NULL)
     {
@@ -25,13 +25,13 @@ void push_stack_double(Node **stack, double value)
     }
     else
     {
-        Node *aux = (*stack);
+        StackDouble *aux = (*stack);
         (*stack) = node;
         node->next = aux;
     }
 }
 
-double top_stack_double(Node *stack)
+double top_stack_double(StackDouble *stack)
 {
     if (stack != NULL)
     {
@@ -39,23 +39,23 @@ double top_stack_double(Node *stack)
     }
 }
 
-void pop_stack_double(Node **stack)
+void pop_stack_double(StackDouble **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;
 
-    Node *aux = (*stack);
+    StackDouble *aux = (*stack);
     (*stack) = (*stack)->next;
     free(aux);
     aux = NULL;
 }
 
-bool is_empty_stack_double(Node *stack)
+bool is_empty_stack_double(StackDouble *stack)
 {
     return (stack == NULL);
 }
 
-void print_stack_double(Node **stack)
+void print_stack_double(StackDouble **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;

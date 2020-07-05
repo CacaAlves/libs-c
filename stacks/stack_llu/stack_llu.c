@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_llu.h"
 
-Node *new_node_stack_llu(long long unsigned int value)
+StackLlu *new_node_stack_llu(long long unsigned int value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    StackLlu *node = (StackLlu *)malloc(sizeof(StackLlu));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_llu(Node **stack, long long unsigned int value)
+void push_stack_llu(StackLlu **stack, long long unsigned int value)
 {
     if (stack == NULL)
         return;
 
-    Node *node = new_node_stack_llu(value);
+    StackLlu *node = new_node_stack_llu(value);
 
     if ((*stack) == NULL)
     {
@@ -25,13 +25,13 @@ void push_stack_llu(Node **stack, long long unsigned int value)
     }
     else
     {
-        Node *aux = (*stack);
+        StackLlu *aux = (*stack);
         (*stack) = node;
         node->next = aux;
     }
 }
 
-long long unsigned int top_stack_llu(Node *stack)
+long long unsigned int top_stack_llu(StackLlu *stack)
 {
     if (stack != NULL)
     {
@@ -39,23 +39,23 @@ long long unsigned int top_stack_llu(Node *stack)
     }
 }
 
-void pop_stack_llu(Node **stack)
+void pop_stack_llu(StackLlu **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;
 
-    Node *aux = (*stack);
+    StackLlu *aux = (*stack);
     (*stack) = (*stack)->next;
     free(aux);
     aux = NULL;
 }
 
-bool is_empty_stack_llu(Node *stack)
+bool is_empty_stack_llu(StackLlu *stack)
 {
     return (stack == NULL);
 }
 
-void print_stack_llu(Node **stack)
+void print_stack_llu(StackLlu **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;

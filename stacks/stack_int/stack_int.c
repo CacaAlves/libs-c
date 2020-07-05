@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_int.h"
 
-Node *new_node_stack_int(int value)
+StackInt *new_node_stack_int(int value)
 {
-    Node *node = (Node *)malloc(sizeof(Node));
+    StackInt *node = (StackInt *)malloc(sizeof(StackInt));
     node->value = value;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_int(Node **stack, int value)
+void push_stack_int(StackInt **stack, int value)
 {
     if (stack == NULL)
         return;
 
-    Node *node = new_node_stack_int(value);
+    StackInt *node = new_node_stack_int(value);
 
     if ((*stack) == NULL)
     {
@@ -25,13 +25,13 @@ void push_stack_int(Node **stack, int value)
     }
     else
     {
-        Node *aux = (*stack);
+        StackInt *aux = (*stack);
         (*stack) = node;
         node->next = aux;
     }
 }
 
-int top_stack_int(Node *stack)
+int top_stack_int(StackInt *stack)
 {
     if (stack != NULL)
     {
@@ -39,23 +39,23 @@ int top_stack_int(Node *stack)
     }
 }
 
-void pop_stack_int(Node **stack)
+void pop_stack_int(StackInt **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;
 
-    Node *aux = (*stack);
+    StackInt *aux = (*stack);
     (*stack) = (*stack)->next;
     free(aux);
     aux = NULL;
 }
 
-bool is_empty_stack_int(Node *stack)
+bool is_empty_stack_int(StackInt *stack)
 {
     return (stack == NULL);
 }
 
-void print_stack_int(Node **stack)
+void print_stack_int(StackInt **stack)
 {
     if (stack == NULL || (*stack) == NULL)
         return;
