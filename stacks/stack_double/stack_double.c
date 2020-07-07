@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_double.h"
 
-StackDouble *new_node_stack_double(double value)
+StackDouble *new_node_stack_double(double data)
 {
     StackDouble *node = (StackDouble *)malloc(sizeof(StackDouble));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_double(StackDouble **stack, double value)
+void push_stack_double(StackDouble **stack, double data)
 {
     if (stack == NULL)
         return;
 
-    StackDouble *node = new_node_stack_double(value);
+    StackDouble *node = new_node_stack_double(data);
 
     if ((*stack) == NULL)
     {
@@ -35,7 +35,7 @@ double top_stack_double(StackDouble *stack)
 {
     if (stack != NULL)
     {
-        return stack->value;
+        return stack->data;
     }
 }
 

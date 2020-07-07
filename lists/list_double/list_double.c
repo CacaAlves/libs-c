@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "list_double.h"
 
-ListDouble *new_node_list_double(double value)
+ListDouble *new_node_list_double(double data)
 {
     ListDouble *node = (ListDouble *)malloc(sizeof(ListDouble));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_double(ListDouble **list, double value)
+void push_list_double(ListDouble **list, double data)
 {
     if (list == NULL)
         return;
 
-    ListDouble *node = new_node_list_double(value);
+    ListDouble *node = new_node_list_double(data);
 
     if ((*list) == NULL)
     {
@@ -33,18 +33,18 @@ void push_list_double(ListDouble **list, double value)
     }
 }
 
-void unshift_list_double(ListDouble **list, double value)
+void unshift_list_double(ListDouble **list, double data)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_double(list, value);
+        push_list_double(list, data);
     }
     else
     {
-        ListDouble *node = new_node_list_double(value);
+        ListDouble *node = new_node_list_double(data);
         ListDouble *first = (*list)->next;
         ListDouble *last = (*list);
         last->next = node;
@@ -99,7 +99,7 @@ double peek_list_double(ListDouble *list)
 {
     if (list != NULL)
     {
-        return ((list->next)->value);
+        return ((list->next)->data);
     }
 }
 
@@ -107,11 +107,11 @@ double top_list_double(ListDouble *list)
 {
     if (list != NULL)
     {
-        return (list->value);
+        return (list->data);
     }
 }
 
-long long int index_of_list_double(ListDouble *list, double value)
+long long int index_of_list_double(ListDouble *list, double data)
 {
     if (list == NULL)
         return -1;
@@ -119,13 +119,13 @@ long long int index_of_list_double(ListDouble *list, double value)
     ListDouble *aux = list->next;
     long long int index = 0;
 
-    while (aux != list && aux->value != value)
+    while (aux != list && aux->data != data)
     {
         aux = aux->next;
         index++;
     }
 
-    return ((aux->value == value) ? index : -1);
+    return ((aux->data == data) ? index : -1);
 }
 
 ListDouble *includes_list_double(ListDouble *list, long long int index)
@@ -231,9 +231,9 @@ void print_list_double(ListDouble *list)
 
     while (first != list)
     {
-        printf("%f ", first->value);
+        printf("%f ", first->data);
         first = first->next;
     }
 
-    printf("%f\n", list->value);
+    printf("%f\n", list->data);
 }

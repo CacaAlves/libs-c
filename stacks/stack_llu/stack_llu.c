@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_llu.h"
 
-StackLlu *new_node_stack_llu(long long unsigned int value)
+StackLlu *new_node_stack_llu(long long unsigned int data)
 {
     StackLlu *node = (StackLlu *)malloc(sizeof(StackLlu));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_llu(StackLlu **stack, long long unsigned int value)
+void push_stack_llu(StackLlu **stack, long long unsigned int data)
 {
     if (stack == NULL)
         return;
 
-    StackLlu *node = new_node_stack_llu(value);
+    StackLlu *node = new_node_stack_llu(data);
 
     if ((*stack) == NULL)
     {
@@ -35,7 +35,7 @@ long long unsigned int top_stack_llu(StackLlu *stack)
 {
     if (stack != NULL)
     {
-        return stack->value;
+        return stack->data;
     }
 }
 

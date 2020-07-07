@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "list_char.h"
 
-ListChar *new_node_list_char(char value)
+ListChar *new_node_list_char(char data)
 {
     ListChar *node = (ListChar *)malloc(sizeof(ListChar));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_char(ListChar **list, char value)
+void push_list_char(ListChar **list, char data)
 {
     if (list == NULL)
         return;
 
-    ListChar *node = new_node_list_char(value);
+    ListChar *node = new_node_list_char(data);
 
     if ((*list) == NULL)
     {
@@ -33,18 +33,18 @@ void push_list_char(ListChar **list, char value)
     }
 }
 
-void unshift_list_char(ListChar **list, char value)
+void unshift_list_char(ListChar **list, char data)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_char(list, value);
+        push_list_char(list, data);
     }
     else
     {
-        ListChar *node = new_node_list_char(value);
+        ListChar *node = new_node_list_char(data);
         ListChar *first = (*list)->next;
         ListChar *last = (*list);
         last->next = node;
@@ -99,7 +99,7 @@ char peek_list_char(ListChar *list)
 {
     if (list != NULL)
     {
-        return ((list->next)->value);
+        return ((list->next)->data);
     }
 }
 
@@ -107,11 +107,11 @@ char top_list_char(ListChar *list)
 {
     if (list != NULL)
     {
-        return (list->value);
+        return (list->data);
     }
 }
 
-long long int index_of_list_char(ListChar *list, char value)
+long long int index_of_list_char(ListChar *list, char data)
 {
     if (list == NULL)
         return -1;
@@ -119,13 +119,13 @@ long long int index_of_list_char(ListChar *list, char value)
     ListChar *aux = list->next;
     long long int index = 0;
 
-    while (aux != list && aux->value != value)
+    while (aux != list && aux->data != data)
     {
         aux = aux->next;
         index++;
     }
 
-    return ((aux->value == value) ? index : -1);
+    return ((aux->data == data) ? index : -1);
 }
 
 ListChar *includes_list_char(ListChar *list, long long int index)
@@ -231,9 +231,9 @@ void print_list_char(ListChar *list)
 
     while (first != list)
     {
-        printf("%c", first->value);
+        printf("%c", first->data);
         first = first->next;
     }
 
-    printf("%c\n", list->value);
+    printf("%c\n", list->data);
 }

@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_int.h"
 
-StackInt *new_node_stack_int(int value)
+StackInt *new_node_stack_int(int data)
 {
     StackInt *node = (StackInt *)malloc(sizeof(StackInt));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_int(StackInt **stack, int value)
+void push_stack_int(StackInt **stack, int data)
 {
     if (stack == NULL)
         return;
 
-    StackInt *node = new_node_stack_int(value);
+    StackInt *node = new_node_stack_int(data);
 
     if ((*stack) == NULL)
     {
@@ -35,7 +35,7 @@ int top_stack_int(StackInt *stack)
 {
     if (stack != NULL)
     {
-        return stack->value;
+        return stack->data;
     }
 }
 

@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "queue_double.h"
 
-QueueDouble *new_node_queue_double(double value)
+QueueDouble *new_node_queue_double(double data)
 {
     QueueDouble *node = (QueueDouble *)malloc(sizeof(QueueDouble));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_double(QueueDouble **queue, double value)
+void enqueue_queue_double(QueueDouble **queue, double data)
 {
     if ((queue) == NULL)
         return;
 
-    QueueDouble *node = new_node_queue_double(value);
+    QueueDouble *node = new_node_queue_double(data);
 
     if ((*queue) == NULL)
     {
@@ -58,7 +58,7 @@ double peek_queue_double(QueueDouble *queue)
 {
     if (queue != NULL)
     {
-        return ((queue->next)->value);
+        return ((queue->next)->data);
     }
 }
 

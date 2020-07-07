@@ -3,21 +3,21 @@
 #include <string.h>
 #include "queue_llu.h"
 
-QueueLlu *new_node_queue_llu(long long unsigned int value)
+QueueLlu *new_node_queue_llu(long long unsigned int data)
 {
     QueueLlu *node = (QueueLlu *)malloc(sizeof(QueueLlu));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_llu(QueueLlu **queue, long long unsigned int value)
+void enqueue_queue_llu(QueueLlu **queue, long long unsigned int data)
 {
     if ((queue) == NULL)
         return;
 
-    QueueLlu *node = new_node_queue_llu(value);
+    QueueLlu *node = new_node_queue_llu(data);
 
     if ((*queue) == NULL)
     {
@@ -58,7 +58,7 @@ long long unsigned int peek_queue_llu(QueueLlu *queue)
 {
     if (queue != NULL)
     {
-        return ((queue->next)->value);
+        return ((queue->next)->data);
     }
 }
 

@@ -2,17 +2,17 @@
 
 typedef struct ListInt
 {
-    int value;
+    int data;
     struct ListInt *next;
 } ListInt;
 
-void push_list_int(ListInt **list, int value);                  /*Inserts at the end*/
-void unshift_list_int(ListInt **list, int value);               /*Inserts at the beginning*/
+void push_list_int(ListInt **list, int data);                   /*Inserts at the end*/
+void unshift_list_int(ListInt **list, int data);                /*Inserts at the beginning*/
 void pop_list_int(ListInt **list);                              /*Removes at the end*/
 void shift_list_int(ListInt **list);                            /*Removes at the beginning*/
-int peek_list_int(ListInt *list);                               /*Returns the first value*/
-int top_list_int(ListInt *list);                                /*Returns the the last value*/
-long long int index_of_list_int(ListInt *list, int value);      /*Returns the index of the first node that contains the value*/
+int peek_list_int(ListInt *list);                               /*Returns the first data*/
+int top_list_int(ListInt *list);                                /*Returns the the last data*/
+long long int index_of_list_int(ListInt *list, int data);       /*Returns the index of the first node that contains the data*/
 ListInt *includes_list_int(ListInt *list, long long int index); /*Returns the node, if it exists, in the list*/
 void delete_list_int(ListInt **list, long long int index);      /*Removes at the index position*/
 void free_list_int(ListInt **list);                             /*Frees the list from the memory*/

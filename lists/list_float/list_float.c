@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "list_float.h"
 
-ListFloat *new_node_list_float(float value)
+ListFloat *new_node_list_float(float data)
 {
     ListFloat *node = (ListFloat *)malloc(sizeof(ListFloat));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_float(ListFloat **list, float value)
+void push_list_float(ListFloat **list, float data)
 {
     if (list == NULL)
         return;
 
-    ListFloat *node = new_node_list_float(value);
+    ListFloat *node = new_node_list_float(data);
 
     if ((*list) == NULL)
     {
@@ -33,18 +33,18 @@ void push_list_float(ListFloat **list, float value)
     }
 }
 
-void unshift_list_float(ListFloat **list, float value)
+void unshift_list_float(ListFloat **list, float data)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_float(list, value);
+        push_list_float(list, data);
     }
     else
     {
-        ListFloat *node = new_node_list_float(value);
+        ListFloat *node = new_node_list_float(data);
         ListFloat *first = (*list)->next;
         ListFloat *last = (*list);
         last->next = node;
@@ -99,7 +99,7 @@ float peek_list_float(ListFloat *list)
 {
     if (list != NULL)
     {
-        return ((list->next)->value);
+        return ((list->next)->data);
     }
 }
 
@@ -107,11 +107,11 @@ float top_list_float(ListFloat *list)
 {
     if (list != NULL)
     {
-        return (list->value);
+        return (list->data);
     }
 }
 
-long long int index_of_list_float(ListFloat *list, float value)
+long long int index_of_list_float(ListFloat *list, float data)
 {
     if (list == NULL)
         return -1;
@@ -119,13 +119,13 @@ long long int index_of_list_float(ListFloat *list, float value)
     ListFloat *aux = list->next;
     long long int index = 0;
 
-    while (aux != list && aux->value != value)
+    while (aux != list && aux->data != data)
     {
         aux = aux->next;
         index++;
     }
 
-    return ((aux->value == value) ? index : -1);
+    return ((aux->data == data) ? index : -1);
 }
 
 ListFloat *includes_list_float(ListFloat *list, long long int index)
@@ -231,9 +231,9 @@ void print_list_float(ListFloat *list)
 
     while (first != list)
     {
-        printf("%f ", first->value);
+        printf("%f ", first->data);
         first = first->next;
     }
 
-    printf("%f\n", list->value);
+    printf("%f\n", list->data);
 }

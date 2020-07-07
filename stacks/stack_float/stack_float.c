@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_float.h"
 
-StackFloat *new_node_stack_float(float value)
+StackFloat *new_node_stack_float(float data)
 {
     StackFloat *node = (StackFloat *)malloc(sizeof(StackFloat));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_float(StackFloat **stack, float value)
+void push_stack_float(StackFloat **stack, float data)
 {
     if (stack == NULL)
         return;
 
-    StackFloat *node = new_node_stack_float(value);
+    StackFloat *node = new_node_stack_float(data);
 
     if ((*stack) == NULL)
     {
@@ -35,7 +35,7 @@ float top_stack_float(StackFloat *stack)
 {
     if (stack != NULL)
     {
-        return stack->value;
+        return stack->data;
     }
 }
 

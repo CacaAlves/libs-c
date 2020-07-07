@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "queue_char.h"
 
-QueueChar *new_node_queue_char(char value)
+QueueChar *new_node_queue_char(char data)
 {
     QueueChar *node = (QueueChar *)malloc(sizeof(QueueChar));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_char(QueueChar **queue, char value)
+void enqueue_queue_char(QueueChar **queue, char data)
 {
     if ((queue) == NULL)
         return;
 
-    QueueChar *node = new_node_queue_char(value);
+    QueueChar *node = new_node_queue_char(data);
 
     if ((*queue) == NULL)
     {
@@ -58,7 +58,7 @@ char peek_queue_char(QueueChar *queue)
 {
     if (queue != NULL)
     {
-        return ((queue->next)->value);
+        return ((queue->next)->data);
     }
 }
 

@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "queue_float.h"
 
-QueueFloat *new_node_queue_float(float value)
+QueueFloat *new_node_queue_float(float data)
 {
     QueueFloat *node = (QueueFloat *)malloc(sizeof(QueueFloat));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_float(QueueFloat **queue, float value)
+void enqueue_queue_float(QueueFloat **queue, float data)
 {
     if ((queue) == NULL)
         return;
 
-    QueueFloat *node = new_node_queue_float(value);
+    QueueFloat *node = new_node_queue_float(data);
 
     if ((*queue) == NULL)
     {
@@ -58,7 +58,7 @@ float peek_queue_float(QueueFloat *queue)
 {
     if (queue != NULL)
     {
-        return ((queue->next)->value);
+        return ((queue->next)->data);
     }
 }
 

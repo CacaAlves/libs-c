@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "stack_char.h"
 
-StackChar *new_node_stack_char(char value)
+StackChar *new_node_stack_char(char data)
 {
     StackChar *node = (StackChar *)malloc(sizeof(StackChar));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_char(StackChar **stack, char value)
+void push_stack_char(StackChar **stack, char data)
 {
     if (stack == NULL)
         return;
 
-    StackChar *node = new_node_stack_char(value);
+    StackChar *node = new_node_stack_char(data);
 
     if ((*stack) == NULL)
     {
@@ -35,7 +35,7 @@ char top_stack_char(StackChar *stack)
 {
     if (stack != NULL)
     {
-        return stack->value;
+        return stack->data;
     }
 }
 

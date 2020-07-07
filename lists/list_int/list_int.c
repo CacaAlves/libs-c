@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "list_int.h"
 
-ListInt *new_node_list_int(int value)
+ListInt *new_node_list_int(int data)
 {
     ListInt *node = (ListInt *)malloc(sizeof(ListInt));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_int(ListInt **list, int value)
+void push_list_int(ListInt **list, int data)
 {
     if (list == NULL)
         return;
 
-    ListInt *node = new_node_list_int(value);
+    ListInt *node = new_node_list_int(data);
 
     if ((*list) == NULL)
     {
@@ -33,18 +33,18 @@ void push_list_int(ListInt **list, int value)
     }
 }
 
-void unshift_list_int(ListInt **list, int value)
+void unshift_list_int(ListInt **list, int data)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_int(list, value);
+        push_list_int(list, data);
     }
     else
     {
-        ListInt *node = new_node_list_int(value);
+        ListInt *node = new_node_list_int(data);
         ListInt *first = (*list)->next;
         ListInt *last = (*list);
         last->next = node;
@@ -99,7 +99,7 @@ int peek_list_int(ListInt *list)
 {
     if (list != NULL)
     {
-        return ((list->next)->value);
+        return ((list->next)->data);
     }
 }
 
@@ -107,11 +107,11 @@ int top_list_int(ListInt *list)
 {
     if (list != NULL)
     {
-        return (list->value);
+        return (list->data);
     }
 }
 
-long long int index_of_list_int(ListInt *list, int value)
+long long int index_of_list_int(ListInt *list, int data)
 {
     if (list == NULL)
         return -1;
@@ -119,13 +119,13 @@ long long int index_of_list_int(ListInt *list, int value)
     ListInt *aux = list->next;
     long long int index = 0;
 
-    while (aux != list && aux->value != value)
+    while (aux != list && aux->data != data)
     {
         aux = aux->next;
         index++;
     }
 
-    return ((aux->value == value) ? index : -1);
+    return ((aux->data == data) ? index : -1);
 }
 
 ListInt *includes_list_int(ListInt *list, long long int index)
@@ -231,9 +231,9 @@ void print_list_int(ListInt *list)
 
     while (first != list)
     {
-        printf("%d ", first->value);
+        printf("%d ", first->data);
         first = first->next;
     }
 
-    printf("%d\n", list->value);
+    printf("%d\n", list->data);
 }

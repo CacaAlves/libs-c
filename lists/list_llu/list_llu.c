@@ -3,21 +3,21 @@
 #include <stdbool.h>
 #include "list_llu.h"
 
-ListLlu *new_node_list_llu(long long unsigned int value)
+ListLlu *new_node_list_llu(long long unsigned int data)
 {
     ListLlu *node = (ListLlu *)malloc(sizeof(ListLlu));
-    node->value = value;
+    node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_llu(ListLlu **list, long long unsigned int value)
+void push_list_llu(ListLlu **list, long long unsigned int data)
 {
     if (list == NULL)
         return;
 
-    ListLlu *node = new_node_list_llu(value);
+    ListLlu *node = new_node_list_llu(data);
 
     if ((*list) == NULL)
     {
@@ -33,18 +33,18 @@ void push_list_llu(ListLlu **list, long long unsigned int value)
     }
 }
 
-void unshift_list_llu(ListLlu **list, long long unsigned int value)
+void unshift_list_llu(ListLlu **list, long long unsigned int data)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_llu(list, value);
+        push_list_llu(list, data);
     }
     else
     {
-        ListLlu *node = new_node_list_llu(value);
+        ListLlu *node = new_node_list_llu(data);
         ListLlu *first = (*list)->next;
         ListLlu *last = (*list);
         last->next = node;
@@ -99,7 +99,7 @@ long long unsigned int peek_list_llu(ListLlu *list)
 {
     if (list != NULL)
     {
-        return ((list->next)->value);
+        return ((list->next)->data);
     }
 }
 
@@ -107,11 +107,11 @@ long long unsigned int top_list_llu(ListLlu *list)
 {
     if (list != NULL)
     {
-        return (list->value);
+        return (list->data);
     }
 }
 
-long long int index_of_list_llu(ListLlu *list, long long unsigned int value)
+long long int index_of_list_llu(ListLlu *list, long long unsigned int data)
 {
     if (list == NULL)
         return -1;
@@ -119,13 +119,13 @@ long long int index_of_list_llu(ListLlu *list, long long unsigned int value)
     ListLlu *aux = list->next;
     long long int index = 0;
 
-    while (aux != list && aux->value != value)
+    while (aux != list && aux->data != data)
     {
         aux = aux->next;
         index++;
     }
 
-    return ((aux->value == value) ? index : -1);
+    return ((aux->data == data) ? index : -1);
 }
 
 ListLlu *includes_list_llu(ListLlu *list, long long int index)
@@ -231,9 +231,9 @@ void print_list_llu(ListLlu *list)
 
     while (first != list)
     {
-        printf("%llu ", first->value);
+        printf("%llu ", first->data);
         first = first->next;
     }
 
-    printf("%llu\n", list->value);
+    printf("%llu\n", list->data);
 }
