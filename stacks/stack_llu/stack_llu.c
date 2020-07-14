@@ -33,7 +33,11 @@ void push_stack_llu(StackLlu **stack, long long unsigned int data)
 
 long long unsigned int top_stack_llu(StackLlu *stack)
 {
-    if (stack != NULL)
+    if (stack == NULL)
+    {
+        printf("Can't return top! Stack is empty.\n");
+    } 
+    else
     {
         return stack->data;
     }
@@ -42,7 +46,10 @@ long long unsigned int top_stack_llu(StackLlu *stack)
 void pop_stack_llu(StackLlu **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't pop! Empty stack.\n");
         return;
+    }
 
     StackLlu *aux = (*stack);
     (*stack) = (*stack)->next;
@@ -58,7 +65,10 @@ bool is_empty_stack_llu(StackLlu *stack)
 void print_stack_llu(StackLlu **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't print! Empty stack.\n");
         return;
+    }
 
     while ((*stack) != NULL)
     {

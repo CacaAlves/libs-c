@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "list_float.h"
+#include "list_void.h"
 
-ListFloat *new_node_list_float(float data)
+ListVoid *new_node_list_void(void *data)
 {
-    ListFloat *node = (ListFloat *)malloc(sizeof(ListFloat));
+    ListVoid *node = (ListVoid *)malloc(sizeof(ListVoid));
     node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_list_float(ListFloat **list, float data)
+void push_list_void(ListVoid **list, void *data)
 {
     if (list == NULL)
         return;
 
-    ListFloat *node = new_node_list_float(data);
+    ListVoid *node = new_node_list_void(data);
 
     if ((*list) == NULL)
     {
@@ -26,33 +26,33 @@ void push_list_float(ListFloat **list, float data)
     }
     else
     {
-        ListFloat *last = (*list);
+        ListVoid *last = (*list);
         node->next = last->next;
         last->next = node;
         (*list) = node;
     }
 }
 
-void unshift_list_float(ListFloat **list, float data)
+void unshift_list_void(ListVoid **list, void *data)
 {
     if (list == NULL)
         return;
 
     if ((*list) == NULL)
     {
-        push_list_float(list, data);
+        push_list_void(list, data);
     }
     else
     {
-        ListFloat *node = new_node_list_float(data);
-        ListFloat *first = (*list)->next;
-        ListFloat *last = (*list);
+        ListVoid *node = new_node_list_void(data);
+        ListVoid *first = (*list)->next;
+        ListVoid *last = (*list);
         last->next = node;
         node->next = first;
     }
 }
 
-void pop_list_float(ListFloat **list)
+void pop_list_void(ListVoid **list)
 {
     if (list == NULL || (*list) == NULL)
     {
@@ -67,7 +67,7 @@ void pop_list_float(ListFloat **list)
     }
     else
     {
-        ListFloat *aux = (*list)->next;
+        ListVoid *aux = (*list)->next;
         while (aux->next != (*list))
         {
             aux = aux->next;
@@ -79,7 +79,7 @@ void pop_list_float(ListFloat **list)
     }
 }
 
-void shift_list_float(ListFloat **list)
+void shift_list_void(ListVoid **list)
 {
     if (list == NULL || (*list) == NULL)
     {
@@ -94,14 +94,14 @@ void shift_list_float(ListFloat **list)
     }
     else
     {
-        ListFloat *first = (*list)->next;
+        ListVoid *first = (*list)->next;
         (*list)->next = first->next;
         free(first);
         first = NULL;
     }
 }
 
-float peek_list_float(ListFloat *list)
+void *peek_list_void(ListVoid *list)
 {
     if (list == NULL)
     {
@@ -113,7 +113,7 @@ float peek_list_float(ListFloat *list)
     }
 }
 
-float top_list_float(ListFloat *list)
+void *top_list_void(ListVoid *list)
 {
     if (list == NULL)
     {
@@ -125,12 +125,12 @@ float top_list_float(ListFloat *list)
     }
 }
 
-long long int index_of_list_float(ListFloat *list, float data)
+long long int index_of_list_void(ListVoid *list, void *data)
 {
     if (list == NULL)
         return -1;
 
-    ListFloat *aux = list->next;
+    ListVoid *aux = list->next;
     long long int index = 0;
 
     while (aux != list && aux->data != data)
@@ -142,12 +142,12 @@ long long int index_of_list_float(ListFloat *list, float data)
     return ((aux->data == data) ? index : -1);
 }
 
-ListFloat *includes_list_float(ListFloat *list, long long int index)
+ListVoid *includes_list_void(ListVoid *list, long long int index)
 {
     if (list == NULL || index < 0)
         return NULL;
 
-    ListFloat *aux = list->next;
+    ListVoid *aux = list->next;
     long long int indexCounter = 0;
 
     while (aux != list && indexCounter != index)
@@ -158,7 +158,7 @@ ListFloat *includes_list_float(ListFloat *list, long long int index)
     return ((indexCounter == index) ? aux : NULL);
 }
 
-void delete_list_float(ListFloat **list, long long int index)
+void delete_list_void(ListVoid **list, long long int index)
 {
     if (list == NULL || (*list) == NULL)
     {
@@ -171,7 +171,7 @@ void delete_list_float(ListFloat **list, long long int index)
         return;
     }
 
-    long long int length = length_list_float((*list));
+    long long int length = length_list_void((*list));
 
     if (index >= length)
     {
@@ -181,24 +181,24 @@ void delete_list_float(ListFloat **list, long long int index)
 
     if (index == 0)
     {
-        shift_list_float(list);
+        shift_list_void(list);
         return;
     }
     else if (index == length - 1)
     {
-        pop_list_float(list);
+        pop_list_void(list);
     }
     else
     {
         long long int indexCounter = 0;
-        ListFloat *aux = (*list)->next;
+        ListVoid *aux = (*list)->next;
         while (indexCounter != index - 1) {
             aux = aux->next;
             indexCounter++;
         }
 
         if (indexCounter == index - 1) {
-            ListFloat *nodeToDelete = aux->next;
+            ListVoid *nodeToDelete = aux->next;
             aux->next = nodeToDelete->next;
             free(nodeToDelete);
             nodeToDelete = NULL;
@@ -206,15 +206,15 @@ void delete_list_float(ListFloat **list, long long int index)
     }
 }
 
-void free_list_float(ListFloat **list)
+void free_list_void(ListVoid **list)
 {
     if (list == NULL)
         return;
 
-    ListFloat *aux = (*list)->next;
+    ListVoid *aux = (*list)->next;
     while (aux != (*list))
     {
-        ListFloat *prev = aux;
+        ListVoid *prev = aux;
         aux = aux->next;
         free(prev);
     }
@@ -222,13 +222,13 @@ void free_list_float(ListFloat **list)
     (*list) = NULL;
 }
 
-long long unsigned int length_list_float(ListFloat *list)
+int length_list_void(ListVoid *list)
 {
     if (list == NULL)
         return 0;
 
-    long long unsigned int counter = 0;
-    ListFloat *aux = list->next;
+    int counter = 0;
+    ListVoid *aux = list->next;
 
     while (aux != list)
     {
@@ -240,12 +240,12 @@ long long unsigned int length_list_float(ListFloat *list)
     return counter;
 }
 
-bool is_empty_list_float(ListFloat *list)
+bool is_empty_list_void(ListVoid *list)
 {
     return (list == NULL);
 }
 
-void print_list_float(ListFloat *list)
+void print_list_void(ListVoid *list)
 {
     if (list == NULL)
     {
@@ -253,13 +253,13 @@ void print_list_float(ListFloat *list)
         return;
     }
 
-    ListFloat *first = list->next;
+    ListVoid *first = list->next;
 
     while (first != list)
     {
-        printf("%f ", first->data);
+        printf("%p ", first->data);
         first = first->next;
     }
 
-    printf("%f\n", list->data);
+    printf("%p\n", list->data);
 }

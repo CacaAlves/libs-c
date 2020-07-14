@@ -38,7 +38,10 @@ void enqueue_queue_lld(QueueLld **queue, long long int data)
 void dequeue_queue_lld(QueueLld **queue)
 {
     if ((queue) == NULL || (*queue) == NULL)
+    {
+        printf("Can't dequeue! Queue is empty.\n");
         return;
+    }
 
     if ((*queue)->next == (*queue))
     {
@@ -56,7 +59,11 @@ void dequeue_queue_lld(QueueLld **queue)
 
 long long int peek_queue_lld(QueueLld *queue)
 {
-    if (queue != NULL)
+    if (queue == NULL)
+    {
+        printf("Can't peek queue! Queue is empty.\n");
+    }
+    else
     {
         return ((queue->next)->data);
     }
@@ -69,6 +76,12 @@ bool is_empty_queue_lld(QueueLld *queue)
 
 void print_queue_lld(QueueLld **queue)
 {
+    if (queue == NULL || (*queue) == NULL) 
+    {
+        printf("Can't print queue! Queue is empty.\n");
+        return;
+    }
+
     QueueLld *aux = (*queue)->next;
     while (aux != (*queue))
     {

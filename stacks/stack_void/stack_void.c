@@ -1,23 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "stack_double.h"
+#include "stack_void.h"
 
-StackDouble *new_node_stack_double(double data)
+StackVoid *new_node_stack_void(int *data)
 {
-    StackDouble *node = (StackDouble *)malloc(sizeof(StackDouble));
+    StackVoid *node = (StackVoid *)malloc(sizeof(StackVoid));
     node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void push_stack_double(StackDouble **stack, double data)
+void push_stack_void(StackVoid **stack, void *data)
 {
     if (stack == NULL)
         return;
 
-    StackDouble *node = new_node_stack_double(data);
+    StackVoid *node = new_node_stack_void(data);
 
     if ((*stack) == NULL)
     {
@@ -25,25 +25,25 @@ void push_stack_double(StackDouble **stack, double data)
     }
     else
     {
-        StackDouble *aux = (*stack);
+        StackVoid *aux = (*stack);
         (*stack) = node;
         node->next = aux;
     }
 }
 
-double top_stack_double(StackDouble *stack)
+void *top_stack_void(StackVoid *stack)
 {
     if (stack == NULL)
     {
         printf("Can't return top! Stack is empty.\n");
-    }
-    else
+    } 
+    else 
     {
         return stack->data;
     }
 }
 
-void pop_stack_double(StackDouble **stack)
+void pop_stack_void(StackVoid **stack)
 {
     if (stack == NULL || (*stack) == NULL)
     {
@@ -51,18 +51,18 @@ void pop_stack_double(StackDouble **stack)
         return;
     }
 
-    StackDouble *aux = (*stack);
+    StackVoid *aux = (*stack);
     (*stack) = (*stack)->next;
     free(aux);
     aux = NULL;
 }
 
-bool is_empty_stack_double(StackDouble *stack)
+bool is_empty_stack_void(StackVoid *stack)
 {
     return (stack == NULL);
 }
 
-void print_stack_double(StackDouble **stack)
+void print_stack_void(StackVoid **stack)
 {
     if (stack == NULL || (*stack) == NULL)
     {
@@ -72,8 +72,8 @@ void print_stack_double(StackDouble **stack)
 
     while ((*stack) != NULL)
     {
-        printf("%f ", top_stack_double(*stack));
-        pop_stack_double(stack);
+        printf("%p ", top_stack_void(*stack));
+        pop_stack_void(stack);
     }
     printf("\n");
 }

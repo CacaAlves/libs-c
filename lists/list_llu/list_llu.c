@@ -55,7 +55,10 @@ void unshift_list_llu(ListLlu **list, long long unsigned int data)
 void pop_list_llu(ListLlu **list)
 {
     if (list == NULL || (*list) == NULL)
+    {
+        printf("Can't pop! List is empty.\n");
         return;
+    }
 
     if ((*list)->next == (*list))
     {
@@ -79,7 +82,10 @@ void pop_list_llu(ListLlu **list)
 void shift_list_llu(ListLlu **list)
 {
     if (list == NULL || (*list) == NULL)
+    {
+        printf("Can't shift! The list is empty.\n");
         return;
+    }
 
     if ((*list)->next == (*list))
     {
@@ -97,7 +103,11 @@ void shift_list_llu(ListLlu **list)
 
 long long unsigned int peek_list_llu(ListLlu *list)
 {
-    if (list != NULL)
+    if (list == NULL)
+    {
+        printf("Can't peek! List is empty.\n");
+    }
+    else
     {
         return ((list->next)->data);
     }
@@ -105,7 +115,11 @@ long long unsigned int peek_list_llu(ListLlu *list)
 
 long long unsigned int top_list_llu(ListLlu *list)
 {
-    if (list != NULL)
+    if (list == NULL)
+    {
+        printf("Can't return top! List is empty.\n");
+    }
+    else
     {
         return (list->data);
     }
@@ -146,13 +160,24 @@ ListLlu *includes_list_llu(ListLlu *list, long long int index)
 
 void delete_list_llu(ListLlu **list, long long int index)
 {
-    if (list == NULL || (*list) == NULL || index < 0)
+    if (list == NULL || (*list) == NULL)
+    {
+        printf("Can't delete! List is empty.\n");
         return;
+    }
+    else if (index < 0)
+    {
+        printf("Can't delete! Invalid index.\n");
+        return;
+    }
 
     long long int length = length_list_llu((*list));
 
     if (index >= length)
+    {
+        printf("Can't delete! Invalide index.\n");
         return;
+    }
 
     if (index == 0)
     {
@@ -222,8 +247,9 @@ bool is_empty_list_llu(ListLlu *list)
 
 void print_list_llu(ListLlu *list)
 {
-    if (list == NULL) {
-        printf("Empty list\n");
+    if (list == NULL)
+    {
+        printf("Can't print! Empty list.\n");
         return;
     }
 

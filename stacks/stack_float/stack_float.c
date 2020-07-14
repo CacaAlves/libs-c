@@ -33,7 +33,11 @@ void push_stack_float(StackFloat **stack, float data)
 
 float top_stack_float(StackFloat *stack)
 {
-    if (stack != NULL)
+    if (stack == NULL)
+    {
+        printf("Can't return top! Stack is empty.\n");
+    }
+    else
     {
         return stack->data;
     }
@@ -42,7 +46,10 @@ float top_stack_float(StackFloat *stack)
 void pop_stack_float(StackFloat **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't pop! Empty stack.\n");
         return;
+    }
 
     StackFloat *aux = (*stack);
     (*stack) = (*stack)->next;
@@ -58,7 +65,10 @@ bool is_empty_stack_float(StackFloat *stack)
 void print_stack_float(StackFloat **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't print! Empty stack.\n");
         return;
+    }
 
     while ((*stack) != NULL)
     {

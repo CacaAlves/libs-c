@@ -1,41 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "queue_llu.h"
+#include <stdbool.h>
+#include "queue_void.h"
 
-QueueLlu *new_node_queue_llu(long long unsigned int data)
+QueueVoid *new_node_queue_void(void *data)
 {
-    QueueLlu *node = (QueueLlu *)malloc(sizeof(QueueLlu));
+    QueueVoid *node = (QueueVoid *)malloc(sizeof(QueueVoid));
     node->data = data;
     node->next = NULL;
 
     return node;
 }
 
-void enqueue_queue_llu(QueueLlu **queue, long long unsigned int data)
+void enqueue_queue_void(QueueVoid **queue, void *data)
 {
     if ((queue) == NULL)
         return;
 
-    QueueLlu *node = new_node_queue_llu(data);
+    QueueVoid *node = new_node_queue_void(data);
 
     if ((*queue) == NULL)
     {
-        (*queue) = (QueueLlu *)malloc(sizeof(QueueLlu));
+        (*queue) = (QueueVoid *)malloc(sizeof(QueueVoid));
 
         (*queue) = node;
         (*queue)->next = node;
     }
     else
     {
-        QueueLlu *last = (*queue);
+        QueueVoid *last = (*queue);
         node->next = last->next;
         last->next = node;
         (*queue) = node;
     }
 }
 
-void dequeue_queue_llu(QueueLlu **queue)
+void dequeue_queue_void(QueueVoid **queue)
 {
     if ((queue) == NULL || (*queue) == NULL)
     {
@@ -50,14 +50,14 @@ void dequeue_queue_llu(QueueLlu **queue)
     }
     else
     {
-        QueueLlu *first = (*queue)->next;
+        QueueVoid *first = (*queue)->next;
         (*queue)->next = first->next;
         free(first);
         first = NULL;
     }
 }
 
-long long unsigned int peek_queue_llu(QueueLlu *queue)
+void *peek_queue_void(QueueVoid *queue)
 {
     if (queue == NULL)
     {
@@ -69,12 +69,12 @@ long long unsigned int peek_queue_llu(QueueLlu *queue)
     }
 }
 
-bool is_empty_queue_llu(QueueLlu *queue)
+bool is_empty_queue_void(QueueVoid *queue)
 {
     return (queue == NULL);
 }
 
-void print_queue_llu(QueueLlu **queue)
+void print_queue_void(QueueVoid **queue)
 {
     if (queue == NULL || (*queue) == NULL) 
     {
@@ -82,13 +82,13 @@ void print_queue_llu(QueueLlu **queue)
         return;
     }
 
-    QueueLlu *aux = (*queue)->next;
+    QueueVoid *aux = (*queue)->next;
     while (aux != (*queue))
     {
-        printf("%llu ", peek_queue_llu(*queue));
+        printf("%p ", peek_queue_void(*queue));
         aux = aux->next;
-        dequeue_queue_llu(queue);
+        dequeue_queue_void(queue);
     }
-    printf("%llu\n", peek_queue_llu((*queue)));
-    dequeue_queue_llu(queue);
+    printf("%p\n", peek_queue_void((*queue)));
+    dequeue_queue_void(queue);
 }

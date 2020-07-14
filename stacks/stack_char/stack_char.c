@@ -33,7 +33,11 @@ void push_stack_char(StackChar **stack, char data)
 
 char top_stack_char(StackChar *stack)
 {
-    if (stack != NULL)
+    if (stack == NULL) 
+    {
+       printf("Can't return top! Stack is empty.\n"); 
+    }
+    else
     {
         return stack->data;
     }
@@ -42,7 +46,10 @@ char top_stack_char(StackChar *stack)
 void pop_stack_char(StackChar **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't pop! Empty stack.\n");
         return;
+    }
 
     StackChar *aux = (*stack);
     (*stack) = (*stack)->next;
@@ -53,17 +60,4 @@ void pop_stack_char(StackChar **stack)
 bool is_empty_stack_char(StackChar *stack)
 {
     return (stack == NULL);
-}
-
-void print_stack_char(StackChar **stack)
-{
-    if (stack == NULL || (*stack) == NULL)
-        return;
-
-    while ((*stack) != NULL)
-    {
-        printf("%c", top_stack_char(*stack));
-        pop_stack_char(stack);
-    }
-    printf("\n");
 }

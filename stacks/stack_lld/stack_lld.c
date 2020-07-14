@@ -33,7 +33,11 @@ void push_stack_lld(StackLld **stack, long long int data)
 
 long long int top_stack_lld(StackLld *stack)
 {
-    if (stack != NULL)
+    if (stack == NULL)
+    {
+        printf("Can't return top! Stack is empty.\n");
+    } 
+    else
     {
         return stack->data;
     }
@@ -42,7 +46,10 @@ long long int top_stack_lld(StackLld *stack)
 void pop_stack_lld(StackLld **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't pop! Empty stack.\n");
         return;
+    }
 
     StackLld *aux = (*stack);
     (*stack) = (*stack)->next;
@@ -58,7 +65,10 @@ bool is_empty_stack_lld(StackLld *stack)
 void print_stack_lld(StackLld **stack)
 {
     if (stack == NULL || (*stack) == NULL)
+    {
+        printf("Can't print! Empty stack.\n");
         return;
+    }
 
     while ((*stack) != NULL)
     {

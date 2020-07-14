@@ -55,7 +55,10 @@ void unshift_list_char(ListChar **list, char data)
 void pop_list_char(ListChar **list)
 {
     if (list == NULL || (*list) == NULL)
+    {
+        printf("Can't pop! List is empty.\n");
         return;
+    }
 
     if ((*list)->next == (*list))
     {
@@ -79,7 +82,10 @@ void pop_list_char(ListChar **list)
 void shift_list_char(ListChar **list)
 {
     if (list == NULL || (*list) == NULL)
+    {
+        printf("Can't shift! The list is empty.\n");
         return;
+    }
 
     if ((*list)->next == (*list))
     {
@@ -97,7 +103,11 @@ void shift_list_char(ListChar **list)
 
 char peek_list_char(ListChar *list)
 {
-    if (list != NULL)
+    if (list == NULL)
+    {
+        printf("Can't peek! List is empty.\n");
+    }
+    else
     {
         return ((list->next)->data);
     }
@@ -105,7 +115,11 @@ char peek_list_char(ListChar *list)
 
 char top_list_char(ListChar *list)
 {
-    if (list != NULL)
+    if (list == NULL)
+    {
+        printf("Can't return top! List is empty.\n");
+    }
+    else
     {
         return (list->data);
     }
@@ -146,13 +160,24 @@ ListChar *includes_list_char(ListChar *list, long long int index)
 
 void delete_list_char(ListChar **list, long long int index)
 {
-    if (list == NULL || (*list) == NULL || index < 0)
+    if (list == NULL || (*list) == NULL)
+    {
+        printf("Can't delete! List is empty.\n");
         return;
+    }
+    else if (index < 0)
+    {
+        printf("Can't delete! Invalid index.\n");
+        return;
+    }
 
     long long int length = length_list_char((*list));
 
     if (index >= length)
+    {
+        printf("Can't delete! Invalide index.\n");
         return;
+    }
 
     if (index == 0)
     {
@@ -167,12 +192,14 @@ void delete_list_char(ListChar **list, long long int index)
     {
         long long int indexCounter = 0;
         ListChar *aux = (*list)->next;
-        while (indexCounter != index - 1) {
+        while (indexCounter != index - 1)
+        {
             aux = aux->next;
             indexCounter++;
         }
 
-        if (indexCounter == index - 1) {
+        if (indexCounter == index - 1)
+        {
             ListChar *nodeToDelete = aux->next;
             aux->next = nodeToDelete->next;
             free(nodeToDelete);
@@ -222,8 +249,9 @@ bool is_empty_list_char(ListChar *list)
 
 void print_list_char(ListChar *list)
 {
-    if (list == NULL) {
-        printf("Empty list\n");
+    if (list == NULL)
+    {
+        printf("Can't print! Empty list.\n");
         return;
     }
 
